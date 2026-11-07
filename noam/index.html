@@ -12,12 +12,12 @@
 <meta property="og:locale" content="he_IL">
 <link rel="preconnect" href="https://images.unsplash.com">
 <title>נעם דיאמנט עוגות</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bellefair&family=Heebo:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 html,body{margin:0}
 /* layout: four full-screen colour fields, one per cake, that stack over each other on scroll; a quiet paper frame around them */
 :root{
-  --paper:#f3f1eb; --ink:#191917; --soft:#76726a;
+  --paper:#f3f1eb; --ink:#191917; --soft:#5f5b54;
   --carrot:#d8602c; --cinnamon:#7b4127; --lemon:#f1d548; --basque:#2c241d; --lime:#c3d34f;
   --display:"Bellefair","Frank Ruhl Libre",Georgia,serif;
   --text:"Heebo","Assistant",system-ui,sans-serif;
@@ -105,6 +105,10 @@ h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
 .two label{min-width:0}.two input{width:100%}
 .fields input[type=tel],.fields input[type=time]{text-align:right}
 .fields input.bad{border-bottom-color:#b3261e}
+.fields label.ok{display:flex;gap:12px;align-items:flex-start;letter-spacing:0;font-size:14px;font-weight:300;color:var(--ink);line-height:1.55}
+.fields label.ok input{width:22px;height:22px;margin:1px 0 0;flex:none;accent-color:var(--ink)}
+.fields label.ok.bad span{color:#b3261e}
+.fields label.ok a{color:inherit}
 .err{margin:22px 0 0;color:#b3261e;font-size:15px;font-weight:400}
 .receipt .r{align-items:center;gap:12px}
 .receipt .r .nm{flex:1}
@@ -115,6 +119,10 @@ h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
 .cta{margin-top:30px;display:flex;align-items:center;justify-content:center;height:60px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:500;font-size:17px;letter-spacing:.04em}
 .fine{margin-top:16px;font-size:14px;color:var(--soft);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
+.allerg{margin:26px 0 0;font-size:14px;color:var(--soft)}
+.legal{margin-top:40px;padding-top:16px;border-top:1px solid #d6d2c9;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:14px;color:var(--soft)}
+.legal nav{display:flex;flex-wrap:wrap;gap:4px 16px}
+.legal a{color:var(--ink);min-height:24px}
 /* floating bar */
 .bar{position:fixed;z-index:5;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
   background:var(--ink);color:var(--paper);border-radius:999px;display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 22px;
@@ -170,10 +178,13 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid curre
       <label for="ct">איפה גרים<input id="ct" autocomplete="address-level2" placeholder="יישוב" required></label>
       <label for="tm">מתי מגיעים לאסוף בשישי, בערך<input id="tm" type="time" step="900" required></label>
       <label for="nt">הערה<input id="nt" placeholder="הקדשה, אלרגיה"></label>
+      <label class="ok" for="ag"><input id="ag" type="checkbox" required><span>קראתי את <a href="legal.html#privacy" target="_blank">מדיניות הפרטיות</a> ואת <a href="legal.html#terms" target="_blank">תנאי ההזמנה והביטול</a>, ואני מסכים/ה שהפרטים יישלחו לנעם בוואטסאפ לצורך ההזמנה.</span></label>
     </form>
     <p class="err" id="err" role="alert" hidden></p>
     <a class="cta" id="cta" href="https://wa.me/972506571600" target="_blank" rel="noopener">שליחת ההזמנה בוואטסאפ</a>
     <div class="fine"><span>תשלום באיסוף · התמונות להמחשה</span><span dir="ltr">050-6571600</span></div>
+    <p class="allerg">העוגות מכילות גלוטן, ביצים ומוצרי חלב. יש אלרגיה? כתבו לנעם לפני ההזמנה.</p>
+    <footer class="legal"><span>נעם דיאמנט · עוגות</span><nav aria-label="מידע משפטי"><a href="legal.html#privacy">פרטיות</a><a href="legal.html#terms">תנאים וביטולים</a><a href="legal.html#access">נגישות</a><a href="legal.html#credits">קרדיטים</a></nav></footer>
   </div>
 </section>
 
@@ -225,13 +236,15 @@ function update(){
   $('cnt').textContent=count===1?'עוגה אחת בסל':count+' עוגות בסל';
   $('bar').classList.toggle('on',total>0&&!nearOrder);
 }
+$('ag').addEventListener('change',()=>{$('ag').parentElement.classList.remove('bad');$('err').hidden=true});
 $('cta').addEventListener('click',e=>{
   const missing=req.filter(i=>!i.value.trim()||(i.id==='ph'&&i.value.replace(/\D/g,'').length<9));
+  const noAgree=!$('ag').checked;$('ag').parentElement.classList.toggle('bad',noAgree);
   missing.forEach(i=>i.classList.add('bad'));
   const empty=!menu.some(m=>q[m.id]);
-  if(empty||missing.length){e.preventDefault();
-    $('err').textContent=empty?'הסל ריק. בוחרים עוגה למעלה ואז שולחים.':'חסרים פרטים: '+missing.map(i=>i.parentElement.firstChild.textContent.trim()).join(', ')+'.';
-    $('err').hidden=false;(empty?$('receipt'):missing[0]).scrollIntoView({block:'center'});if(!empty)missing[0].focus({preventScroll:true});}
+  if(empty||missing.length||noAgree){e.preventDefault();
+    $('err').textContent=empty?'הסל ריק. בוחרים עוגה למעלה ואז שולחים.':missing.length?'חסרים פרטים: '+missing.map(i=>i.parentElement.firstChild.textContent.trim()).join(', ')+'.':'צריך לסמן את האישור לפני השליחה.';
+    $('err').hidden=false;const tgt=empty?$('receipt'):missing[0]||$('ag');tgt.scrollIntoView({block:'center'});if(!empty)tgt.focus({preventScroll:true});}
   else $('err').hidden=true;
 });
 // letters

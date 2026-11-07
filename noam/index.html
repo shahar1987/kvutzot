@@ -10,7 +10,6 @@
 <meta property="og:image" content="https://shahar1987.github.io/kvutzot/noam/og.jpg?v=2">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="he_IL">
-<link rel="preconnect" href="https://images.unsplash.com">
 <title>נעם דיאמנט עוגות</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
@@ -141,7 +140,7 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid curre
 </head>
 <body>
 <header class="hero-wrap">
-  <div class="hero-bg" role="img" aria-label="ויטרינה של עוגות" style="background-image:url('https://images.unsplash.com/photo-1726950189914-8fe1016eb9c7?auto=format&fit=crop&w=1800&q=75')"></div>
+  <div class="hero-bg" role="img" aria-label="ויטרינה של עוגות" style="background-image:url('img/vitrine.jpg')"></div>
   <div class="pad hero-in">
     <div class="in top"><span class="mark" aria-hidden="true">נ</span><span class="label">הזמנות ליום שישי</span></div>
     <div class="in hero">
@@ -196,9 +195,9 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid curre
 <script>
 document.documentElement.classList.add('js');
 const menu=[
-  {id:'c1',cls:'f1',kind:'עוגת גזר',name:'גזר <em>וקינמון</em>',plain:'פס גזר וקינמון',tags:['קינמון','פרוסטינג'],price:65,img:'https://images.unsplash.com/photo-1607269832078-1a3bd22a306d?auto=format&fit=crop&w=1400&q=75'},
-  {id:'c3',cls:'f3',kind:'פאי',name:'פאי <em>לימון</em>',plain:'פס פאי לימון',tags:['קרם לימון','מרנג שרוף'],price:85,img:'https://images.unsplash.com/photo-1530449595747-4315f4cd454f?auto=format&fit=crop&w=1400&q=75'},
-  {id:'c4',cls:'f4',kind:'עוגת גבינה',name:'באסקית <em>ליים</em>',plain:'פס באסקית',tags:['גרידת ליים','קרם לימון עדין'],price:110,img:'https://images.unsplash.com/photo-1759303380841-55c09244fd2b?auto=format&fit=crop&w=1400&q=75'}
+  {id:'c1',cls:'f1',kind:'עוגת גזר',name:'גזר <em>וקינמון</em>',plain:'פס גזר וקינמון',tags:['קינמון','פרוסטינג'],price:65,img:'img/carrot.jpg'},
+  {id:'c3',cls:'f3',kind:'פאי',name:'פאי <em>לימון</em>',plain:'פס פאי לימון',tags:['קרם לימון','מרנג שרוף'],price:85,img:'img/lemon.jpg'},
+  {id:'c4',cls:'f4',kind:'עוגת גבינה',name:'באסקית <em>ליים</em>',plain:'פס באסקית',tags:['גרידת ליים','קרם לימון עדין'],price:110,img:'img/basque.jpg'}
 ];
 const q=Object.fromEntries(menu.map(m=>[m.id,0]));
 const main=document.getElementById('cakes');

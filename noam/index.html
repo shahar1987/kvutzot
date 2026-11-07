@@ -126,6 +126,9 @@ h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
 .pay b b,.pay span b{font-family:inherit;font-size:inherit;font-weight:500}
 #copy{justify-self:start;display:flex;align-items:center;gap:14px;min-height:48px;padding:0 18px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--paper);font:400 18px var(--text);cursor:pointer;margin-top:4px}
 #copy small{font-size:13px;opacity:.8}
+.ask{margin-top:28px;padding-top:18px;border-top:1px solid #d6d2c9;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;font-size:15px}
+.ask-links{display:flex;gap:8px}
+.ask-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid var(--ink);border-radius:999px;color:var(--ink);text-decoration:none;font-weight:400}
 /* floating bar */
 .bar{position:fixed;z-index:5;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
   background:var(--ink);color:var(--paper);border-radius:999px;display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 22px;
@@ -190,7 +193,8 @@ button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid curre
       <button type="button" id="copy"><span dir="ltr">050-6571600</span><small id="copied">העתקה</small></button>
     </div>
     <a class="cta" id="cta" href="https://wa.me/972506571600" target="_blank" rel="noopener">שליחת ההזמנה בוואטסאפ</a>
-    <div class="fine"><span>תשלום בביט או בפייבוקס · התמונות להמחשה</span><span dir="ltr">050-6571600</span></div>
+    <div class="ask"><span>שאלה על העוגות? נעם זמינה ב־<span dir="ltr">050-6571600</span></span><span class="ask-links"><a href="https://wa.me/972506571600" target="_blank" rel="noopener">וואטסאפ</a><a href="tel:+972506571600">שיחה</a></span></div>
+    <div class="fine"><span>תשלום בביט או בפייבוקס · התמונות להמחשה</span></div>
     <footer class="legal"><span>נעם דיאמנט · עוגות</span><nav aria-label="מידע משפטי"><a href="legal.html#privacy">פרטיות</a><a href="legal.html#terms">תנאים וביטולים</a><a href="legal.html#access">נגישות</a><a href="legal.html#credits">קרדיטים</a></nav></footer>
   </div>
 </section>

@@ -14,7 +14,9 @@ jobs:
           cd noam/img
           while read name id; do
             [ -z "$name" ] && continue
-            if curl -fsSL -A "Mozilla/5.0" -o "raw-$name" "https://unsplash.com/photos/$id/download?force=true"; then
+            img=$(curl -fsSL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" "https://unsplash.com/photos/$id" | grep -o 'https://images.unsplash.com/photo-[A-Za-z0-9-]*' | head -1)
+            echo "$name $id -> $img"
+            if [ -n "$img" ] && curl -fsSL -o "raw-$name" "$img?w=1800&q=85&fm=jpg"; then
               convert "raw-$name" -auto-orient -resize '1600x1600>' -strip -quality 80 "$name.jpg" && echo "ok $name"
             else echo "FAIL $name"; fi
             rm -f "raw-$name"

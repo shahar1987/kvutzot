@@ -227,7 +227,7 @@ function update(){
     ?picked.map(m=>`<div class="r"><span class="nm">${m.plain}</span><span class="mini"><button type="button" data-id="${m.id}" data-d="-1" aria-label="פחות ${m.plain}">−</button><span>${q[m.id]}</span><button type="button" data-id="${m.id}" data-d="1" aria-label="עוד ${m.plain}">+</button></span><span class="ln">₪${m.price*q[m.id]}</span></div>`).join('')+`<div class="r tot"><span class="nm">סה״כ</span><span class="ln">₪${total}</span></div>`
     :'<div class="empty">הסל ריק. לוחצים + ליד העוגה שרוצים.</div>';
   const [fn,ln,ph,ct,tm]=req.map(i=>i.value.trim());
-  const msg=['היי נעם, אשמח להזמין:',...picked.map(m=>`${q[m.id]} × ${m.plain} (₪${m.price*q[m.id]})`),`סה״כ ₪${total}`,'',`שם: ${fn} ${ln}`,`טלפון: ${ph}`,`גר/ה ב: ${ct}`,`מגיע/ה לאסוף בשישי בסביבות ${tm}`,nt.value?`הערה: ${nt.value}`:null].filter(x=>x!==null).join('\n');
+  const msg=['*הזמנה חדשה לשישי*','','*העוגות*',...picked.map(m=>`• ${q[m.id]} × ${m.plain}  ₪${m.price*q[m.id]}`),`*סה״כ לתשלום: ₪${total}*`,'','*פרטי המזמין/ה*',`שם: ${fn} ${ln}`,`טלפון: ${ph}`,`יישוב: ${ct}`,`איסוף: שישי בסביבות ${tm}, קורטדו`,...(nt.value.trim()?[`הערה: ${nt.value.trim()}`]:[])].join('\n');
   $('cta').href='https://wa.me/972506571600?text='+encodeURIComponent(msg);
   $('sum').textContent='₪'+total;
   $('cnt').textContent=count===1?'עוגה אחת בסל':count+' עוגות בסל';

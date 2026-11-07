@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f3f1eb">
+<meta name="description" content="ארבע עוגות של נעם דיאמנט. מזמינים עד רביעי ב־15:00, אוספים בשישי מקורטדו.">
+<meta property="og:title" content="נעם דיאמנט · הזמנות ליום שישי">
+<meta property="og:description" content="ארבע עוגות. מזמינים עד רביעי ב־15:00, אוספים בשישי מקורטדו.">
+<meta property="og:image" content="https://shahar1987.github.io/kvutzot/noam/og.jpg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<title>נעם דיאמנט עוגות</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bellefair&family=Heebo:wght@300;400;500;700&display=swap">
+<style>
+html,body{margin:0}
+/* layout: four full-screen colour fields, one per cake, that stack over each other on scroll; a quiet paper frame around them */
+:root{
+  --paper:#f3f1eb; --ink:#191917; --soft:#76726a;
+  --carrot:#d8602c; --cinnamon:#7b4127; --lemon:#f1d548; --basque:#2c241d; --lime:#c3d34f;
+  --display:"Bellefair","Frank Ruhl Libre",Georgia,serif;
+  --text:"Heebo","Assistant",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--text);font-weight:300;font-size:17px;line-height:1.6;overflow-x:hidden}
+.pad{padding-left:max(22px,env(safe-area-inset-left,0px));padding-right:max(22px,env(safe-area-inset-right,0px))}
+.in{max-width:620px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
+.label{font-size:11px;letter-spacing:.32em;font-weight:500}
+
+/* top */
+.top{display:flex;justify-content:space-between;align-items:center;padding-block:22px}
+.mark{width:46px;height:46px;border-radius:50%;border:1px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-size:22px;line-height:1;transform:rotate(calc(var(--hp,0)*-120deg))}
+
+/* hero */
+.hero{padding-block:9vh 7vh;display:grid;gap:34px}
+.name{font-size:clamp(84px,27vw,168px);line-height:.84;letter-spacing:-.02em}
+.name>span{display:block}
+.name>span:last-child{padding-right:.55em}
+.js .name i{display:inline-block;font-style:normal;animation:rise 1s cubic-bezier(.2,.7,.1,1) both;animation-delay:calc(var(--i)*60ms + 150ms)}
+@keyframes rise{from{transform:translateY(.5em);opacity:0}to{transform:none;opacity:1}}
+.lede{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.lede .line{width:56px;height:1px;background:var(--ink);margin-top:14px;transform-origin:right;transform:scaleX(calc(1 - var(--hp,0)))}
+.lede p{margin:0;font-size:19px;max-width:28ch}
+.facts{display:flex;gap:28px;flex-wrap:wrap;border-top:1px solid var(--ink);padding-top:16px}
+.facts div{display:grid;gap:2px}
+.facts b{font-weight:500;font-size:16px}
+.facts span{font-size:11px;letter-spacing:.28em;color:var(--soft)}
+
+/* cake fields */
+.field{position:sticky;top:0;min-height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding-block:max(28px,env(safe-area-inset-top,0px)) calc(100px + env(safe-area-inset-bottom,0px));color:var(--fg);background:var(--bg)}
+.field .in{width:100%;position:relative;z-index:1}
+.f1{--bg:var(--carrot);--fg:#fff6ec;--shape:#e98a4f}
+.f2{--bg:var(--cinnamon);--fg:#f6e7d9;--shape:#93573a}
+.f3{--bg:var(--lemon);--fg:#2a2410;--shape:#f7e47e}
+.f4{--bg:var(--basque);--fg:#efe6da;--shape:#3c3128;--hi:var(--lime)}
+.disc{position:absolute;z-index:0;width:min(150vw,900px);aspect-ratio:1;border-radius:50%;left:-38%;bottom:-40%;
+  background:conic-gradient(from calc(var(--sp,0)*90deg),var(--bg) 0 38deg,var(--shape) 0 360deg);transform:rotate(calc(var(--sp,0)*-40deg))}
+.f-head{display:flex;justify-content:space-between;align-items:baseline}
+.f-head .label{opacity:.75}
+.f-body{display:grid;gap:22px}
+.f-body h3{font-size:clamp(58px,17vw,108px);line-height:.9;letter-spacing:-.015em;transform:translateX(calc((1 - var(--sp,1))*-40px))}
+.f-body h3 em{font-style:normal;color:var(--hi,inherit)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
+.tags li{border:1px solid currentColor;border-radius:999px;padding:5px 14px;font-size:14px;font-weight:400}
+.f-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid currentColor;padding-top:18px}
+.price{font-family:var(--display);font-size:46px;line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-size:.5em;margin-left:2px}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:48px;height:48px;border-radius:50%;border:1px solid currentColor;background:transparent;color:inherit;font:300 24px/1 var(--text);cursor:pointer;transition:transform .15s}
+.qty button:active{transform:scale(.92)}
+.qty button.add{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.qty output{min-width:30px;text-align:center;font-size:22px;font-weight:400;font-variant-numeric:tabular-nums}
+
+/* about */
+.about{position:relative;z-index:2;background:var(--paper);padding-block:96px 40px}
+.about .label{color:var(--soft)}
+.about p{font-family:var(--display);font-size:clamp(28px,7.6vw,42px);line-height:1.3;margin:22px 0 0}
+.about .w{opacity:var(--o,1);transition:opacity .2s}
+.places{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:34px;font-size:13px;letter-spacing:.2em;color:var(--soft)}
+
+/* order */
+.order{position:relative;z-index:2;background:var(--paper);padding-block:40px 170px}
+.order h2{font-size:clamp(44px,12vw,72px);line-height:1}
+.receipt{margin:28px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding-block:10px;display:grid}
+.receipt .r{display:flex;justify-content:space-between;padding-block:8px;font-variant-numeric:tabular-nums}
+.receipt .empty{color:var(--soft);padding-block:8px}
+.receipt .tot{border-top:1px dashed #bcb7ad;margin-top:6px;padding-top:12px;font-weight:500}
+.fields{display:grid;gap:22px}
+.fields label{display:grid;gap:2px;font-size:11px;letter-spacing:.28em;color:var(--soft);font-weight:500}
+.fields input{height:48px;border:0;border-bottom:1px solid #bcb7ad;background:none;font:300 20px var(--text);color:var(--ink);padding:0;border-radius:0}
+.fields input:focus{outline:none;border-bottom-color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.two label{min-width:0}.two input{width:100%}
+.fields input[type=tel],.fields input[type=time]{text-align:right}
+.fields input.bad{border-bottom-color:#b3261e}
+.err{margin:22px 0 0;color:#b3261e;font-size:15px;font-weight:400}
+.receipt .r{align-items:center;gap:12px}
+.receipt .r .nm{flex:1}
+.mini{display:flex;align-items:center;gap:2px}
+.mini button{width:36px;height:36px;border-radius:50%;border:1px solid #bcb7ad;background:none;color:var(--ink);font:300 18px/1 var(--text);cursor:pointer}
+.mini span{min-width:22px;text-align:center}
+.receipt .r .ln{min-width:52px;text-align:left}
+.cta{margin-top:30px;display:flex;align-items:center;justify-content:center;height:60px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:500;font-size:17px;letter-spacing:.04em}
+.fine{margin-top:16px;font-size:14px;color:var(--soft);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* floating bar */
+.bar{position:fixed;z-index:5;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  background:var(--ink);color:var(--paper);border-radius:999px;display:flex;align-items:center;justify-content:space-between;padding:8px 8px 8px 22px;
+  transform:translateY(160%);transition:transform .5s cubic-bezier(.2,.7,.1,1);box-shadow:0 12px 30px rgba(25,25,23,.25)}
+.bar.on{transform:none}
+.bar .s{display:grid;line-height:1.15;padding-right:14px}
+.bar .s small{font-size:12px;opacity:.7}
+.bar .s b{font-family:var(--display);font-weight:400;font-size:26px;font-variant-numeric:tabular-nums}
+.bar a{background:var(--paper);color:var(--ink);text-decoration:none;font-weight:500;padding:13px 22px;border-radius:999px}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){
+  .js .name i{animation:none}.mark,.disc,.f-body h3,.lede .line{transform:none!important}.about .w{opacity:1!important}.bar{transition:none}
+}
+</style>
+
+</head>
+<body>
+<header class="pad">
+  <div class="in">
+    <div class="top"><span class="mark" aria-hidden="true">נ</span><span class="label">הזמנות ליום שישי</span></div>
+    <div class="hero">
+      <h1 class="name" aria-label="נעם דיאמנט"><span aria-hidden="true">נעם</span><span aria-hidden="true">דיאמנט</span></h1>
+      <div class="lede"><span class="line"></span><p>ארבע עוגות שאפיתי לסוף השבוע. מזמינים כאן ואוספים בשישי מקורטדו.</p></div>
+      <div class="facts">
+        <div><span>הזמנות</span><b>עד רביעי, 15:00</b></div>
+        <div><span>איסוף</span><b>שישי, קורטדו</b></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="cakes"></main>
+
+<section class="about pad" aria-labelledby="ah">
+  <div class="in">
+    <h2 class="label" id="ah">מי אופה</h2>
+    <p id="bio">בת 25, בת הקיבוץ. מגיל קטן נמשכתי לקונדיטוריה. התחלתי בפוקצ׳ה, עבדתי כקונדיטורית ומנהלת מטבח, והיום אני קונדיטורית ראשית בקיבוצטרייה בעמיר.</p>
+    <div class="places"><span>פוקצ׳ה</span><span>קיבוצטרייה, עמיר</span><span>קורטדו</span></div>
+  </div>
+</section>
+
+<section class="order pad" aria-labelledby="oh">
+  <div class="in">
+    <h2 id="oh">הסל שלך</h2>
+    <div class="receipt" id="receipt"></div>
+    <form class="fields" id="f" novalidate>
+      <div class="two">
+        <label for="fn">שם פרטי<input id="fn" autocomplete="given-name" required></label>
+        <label for="ln">שם משפחה<input id="ln" autocomplete="family-name" required></label>
+      </div>
+      <label for="ph">טלפון<input id="ph" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required></label>
+      <label for="ct">איפה גרים<input id="ct" autocomplete="address-level2" placeholder="יישוב" required></label>
+      <label for="tm">מתי מגיעים לאסוף בשישי, בערך<input id="tm" type="time" step="900" required></label>
+      <label for="nt">הערה<input id="nt" placeholder="הקדשה, אלרגיה"></label>
+    </form>
+    <p class="err" id="err" role="alert" hidden></p>
+    <a class="cta" id="cta" href="https://wa.me/972506571600" target="_blank" rel="noopener">שליחת ההזמנה בוואטסאפ</a>
+    <div class="fine"><span>תשלום באיסוף</span><span dir="ltr">050-6571600</span></div>
+  </div>
+</section>
+
+<div class="bar" id="bar" aria-live="polite">
+  <div class="s"><small id="cnt"></small><b id="sum">₪0</b></div>
+  <a href="#oh">לסל</a>
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+const menu=[
+  {id:'c1',cls:'f1',kind:'עוגת גזר',name:'גזר <em>ופקאנים</em>',plain:'פס גזר ופקאנים',tags:['קינמון','פקאנים קלויים','פרוסטינג'],price:80},
+  {id:'c2',cls:'f2',kind:'עוגת גזר',name:'גזר <em>וקינמון</em>',plain:'פס גזר וקינמון',tags:['קינמון','פרוסטינג'],price:65},
+  {id:'c3',cls:'f3',kind:'פאי',name:'פאי <em>לימון</em>',plain:'פס פאי לימון',tags:['קרם לימון','מרנג שרוף'],price:85},
+  {id:'c4',cls:'f4',kind:'עוגת גבינה',name:'באסקית <em>ליים</em>',plain:'פס באסקית',tags:['גרידת ליים','קרם לימון עדין'],price:110}
+];
+const q=Object.fromEntries(menu.map(m=>[m.id,0]));
+const main=document.getElementById('cakes');
+menu.forEach(m=>{
+  const s=document.createElement('section');s.className='field pad '+m.cls;s.setAttribute('aria-label',m.plain);
+  s.innerHTML=`<div class="disc" aria-hidden="true"></div>
+  <div class="in f-head"><span class="label">${m.kind}</span><span class="label">פס שלם</span></div>
+  <div class="in f-body"><h3>${m.name}</h3><ul class="tags">${m.tags.map(t=>`<li>${t}</li>`).join('')}</ul></div>
+  <div class="in f-foot"><span class="price"><small>₪</small>${m.price}</span>
+    <div class="qty"><button type="button" aria-label="פחות ${m.plain}">−</button><output aria-label="כמות">0</output><button type="button" class="add" aria-label="עוד ${m.plain}">+</button></div></div>`;
+  const [minus,plus]=s.querySelectorAll('button'),out=s.querySelector('output');
+  minus.onclick=()=>{q[m.id]=Math.max(0,q[m.id]-1);out.value=q[m.id];update()};
+  plus.onclick=()=>{q[m.id]++;out.value=q[m.id];update()};
+  main.appendChild(s);
+});
+const $=id=>document.getElementById(id);
+const req=['fn','ln','ph','ct','tm'].map($),nt=$('nt'),outs={};
+document.querySelectorAll('.field').forEach((f,i)=>outs[menu[i].id]=f.querySelector('output'));
+$('f').addEventListener('submit',e=>e.preventDefault());
+[...req,nt].forEach(i=>i.addEventListener('input',()=>{i.classList.remove('bad');$('err').hidden=true;update()}));
+$('receipt').addEventListener('click',e=>{const b=e.target.closest('button[data-id]');if(!b)return;
+  const id=b.dataset.id;q[id]=Math.max(0,q[id]+(+b.dataset.d));update()});
+let nearOrder=false,ticking=false;
+function update(){
+  menu.forEach(m=>outs[m.id].value=q[m.id]);
+  const picked=menu.filter(m=>q[m.id]);
+  const total=picked.reduce((s,m)=>s+m.price*q[m.id],0),count=picked.reduce((s,m)=>s+q[m.id],0);
+  $('receipt').innerHTML=picked.length
+    ?picked.map(m=>`<div class="r"><span class="nm">${m.plain}</span><span class="mini"><button type="button" data-id="${m.id}" data-d="-1" aria-label="פחות ${m.plain}">−</button><span>${q[m.id]}</span><button type="button" data-id="${m.id}" data-d="1" aria-label="עוד ${m.plain}">+</button></span><span class="ln">₪${m.price*q[m.id]}</span></div>`).join('')+`<div class="r tot"><span class="nm">סה״כ</span><span class="ln">₪${total}</span></div>`
+    :'<div class="empty">הסל ריק. לוחצים + ליד העוגה שרוצים.</div>';
+  const [fn,ln,ph,ct,tm]=req.map(i=>i.value.trim());
+  const msg=['היי נעם, אשמח להזמין:',...picked.map(m=>`${q[m.id]} × ${m.plain} (₪${m.price*q[m.id]})`),`סה״כ ₪${total}`,'',`שם: ${fn} ${ln}`,`טלפון: ${ph}`,`גר/ה ב: ${ct}`,`מגיע/ה לאסוף בשישי בסביבות ${tm}`,nt.value?`הערה: ${nt.value}`:null].filter(x=>x!==null).join('\n');
+  $('cta').href='https://wa.me/972506571600?text='+encodeURIComponent(msg);
+  $('sum').textContent='₪'+total;
+  $('cnt').textContent=count===1?'עוגה אחת בסל':count+' עוגות בסל';
+  $('bar').classList.toggle('on',total>0&&!nearOrder);
+}
+$('cta').addEventListener('click',e=>{
+  const missing=req.filter(i=>!i.value.trim()||(i.id==='ph'&&i.value.replace(/\D/g,'').length<9));
+  missing.forEach(i=>i.classList.add('bad'));
+  const empty=!menu.some(m=>q[m.id]);
+  if(empty||missing.length){e.preventDefault();
+    $('err').textContent=empty?'הסל ריק. בוחרים עוגה למעלה ואז שולחים.':'חסרים פרטים: '+missing.map(i=>i.parentElement.firstChild.textContent.trim()).join(', ')+'.';
+    $('err').hidden=false;(empty?$('receipt'):missing[0]).scrollIntoView({block:'center'});if(!empty)missing[0].focus({preventScroll:true});}
+  else $('err').hidden=true;
+});
+// letters
+document.querySelectorAll('.name>span').forEach((s,j)=>{s.innerHTML=[...s.textContent].map((c,i)=>`<i style="--i:${i+j*3}">${c}</i>`).join('')});
+// bio words
+const bio=document.getElementById('bio');
+bio.innerHTML=bio.textContent.split(' ').map(w=>`<span class="w">${w}</span>`).join(' ');
+const words=[...bio.querySelectorAll('.w')],fields=[...document.querySelectorAll('.field')],orderEl=document.querySelector('.order'),root=document.documentElement;
+function frame(){
+  ticking=false;const vh=innerHeight;
+  root.style.setProperty('--hp',Math.min(1,scrollY/(vh*.8)).toFixed(3));
+  // --sp: 0 while a field is still coming up from below, 1 once it has landed at the top
+  fields.forEach(f=>{const t=f.getBoundingClientRect().top;f.style.setProperty('--sp',Math.min(1,Math.max(0,1-t/vh)).toFixed(3))});
+  words.forEach(w=>{const d=Math.abs(w.getBoundingClientRect().top-vh*.5)/(vh*.5);w.style.setProperty('--o',Math.max(.28,1-d*.8).toFixed(2))});
+  const was=nearOrder;nearOrder=orderEl.getBoundingClientRect().top<vh*.75;if(was!==nearOrder)update();
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(frame)}},{passive:true});
+addEventListener('resize',frame);
+update();frame();
+</script>
+
+</body>
+</html>

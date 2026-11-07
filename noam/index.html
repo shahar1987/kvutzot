@@ -103,6 +103,8 @@ h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .two label{min-width:0}.two input{width:100%}
 .fields input[type=tel],.fields input[type=time]{text-align:right}
+.fields input[type=time]{width:100%;min-width:0;-webkit-appearance:none;appearance:none;display:block;min-height:48px;line-height:48px}
+.fields input[type=time]::-webkit-date-and-time-value{text-align:right}
 .fields input.bad{border-bottom-color:#b3261e}
 .fields label.ok{display:flex;gap:12px;align-items:flex-start;letter-spacing:0;font-size:14px;font-weight:300;color:var(--ink);line-height:1.55}
 .fields label.ok input{width:22px;height:22px;margin:1px 0 0;flex:none;accent-color:var(--ink)}

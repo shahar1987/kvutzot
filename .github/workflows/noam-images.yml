@@ -1,7 +1,7 @@
 name: noam-images
 on:
   push:
-    paths: [noam/img/sources.txt]
+    paths: [noam/img/fetch.py]
 permissions:
   contents: write
 jobs:
@@ -9,20 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download and resize
-        run: |
-          cd noam/img
-          while read name id; do
-            [ -z "$name" ] && continue
-            img=$(curl -fsSL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" "https://unsplash.com/photos/$id" | grep -o 'https://images.unsplash.com/photo-[A-Za-z0-9-]*' | head -1)
-            echo "$name $id -> $img"
-            if [ -n "$img" ] && curl -fsSL -o "raw-$name" "$img?w=1800&q=85&fm=jpg"; then
-              convert "raw-$name" -auto-orient -resize '1600x1600>' -strip -quality 80 "$name.jpg" && echo "ok $name"
-            else echo "FAIL $name"; fi
-            rm -f "raw-$name"
-          done < sources.txt
-          ls -la
+      - name: Check and fetch photos
+        run: cd noam/img && python3 fetch.py && rm -f *.raw && ls
       - name: Commit
         run: |
           git config user.name "github-actions" && git config user.email "actions@github.com"
-          git add noam/img/*.jpg && git commit -m "noam: fetch candidate photos" && git push || echo "nothing to commit"
+          git add noam/img/*.jpg noam/img/credits.json && git commit -m "noam: fetch candidate photos" && git push || echo "nothing to commit"

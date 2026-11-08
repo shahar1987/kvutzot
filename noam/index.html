@@ -267,12 +267,15 @@ $('cta').addEventListener('click',e=>{
   else{$('err').hidden=true;logOrder();}
 });
 // every sent order is also recorded in Noam's Google Sheet (through a Google Form linked to it)
+let lastLogged='';
 function logOrder(){
   const E={fn:113342749,ln:1710636036,ph:73928355,ct:1974738334,tm:228091397,c1:1593001912,c3:1888257555,c4:888887642,tot:2093988469,nt:650493612};
   const f=new URLSearchParams();
   ['fn','ln','ph','ct','tm','nt'].forEach(k=>f.append('entry.'+E[k],$(k).value.trim()));
   ['c1','c3','c4'].forEach(k=>f.append('entry.'+E[k],q[k]||0));
   f.append('entry.'+E.tot,menu.reduce((s,m)=>s+m.price*q[m.id],0));
+  // a double tap on the button must not record the same order twice
+  if(f.toString()===lastLogged)return;lastLogged=f.toString();
   try{fetch('https://docs.google.com/forms/d/e/1FAIpQLSc-wzZFl03t4FTUEyeD1o3lxa9boHIwA0bjpM_KJAwr95jdbg/formResponse',{method:'POST',mode:'no-cors',keepalive:true,body:f})}catch(e){}
 }
 // letters

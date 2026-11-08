@@ -1,0 +1,11 @@
+name: noam-e2e
+on:
+  push:
+    paths: [.github/e2e/noam-order.mjs]
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm i playwright@1.48.2 && npx playwright install --with-deps chromium
+      - run: node .github/e2e/noam-order.mjs
